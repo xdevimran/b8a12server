@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
-const app = express(); 
+const app = express();
 const PORT = process.env.PORT || 5000;
 
 // app.use(cors());
@@ -55,6 +55,7 @@ async function run() {
       const requests = await usersCollection.find(req.query).toArray();
       res.send(requests);
     });
+
     // Get single User
     app.get("/user/:id", async (req, res) => {
       const id = req.params.id;
@@ -241,6 +242,19 @@ async function run() {
     app.post("/contactRequest", async (req, res) => {
       const contactRequest = req.body;
       const result = await contactRequestCollection.insertOne(contactRequest);
+      res.send(result);
+    });
+
+    // Get all Contact Request
+    app.get("/contactRequest", async (req, res) => {
+      const requests = await contactRequestCollection.find(req.query).toArray();
+      res.send(requests);
+    });
+    // delete single Contact Request
+    app.delete("/contactRequest/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await contactRequestCollection.deleteOne(query);
       res.send(result);
     });
 
