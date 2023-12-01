@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
-const app = express();
+const app = express(); 
 const PORT = process.env.PORT || 5000;
 
 // app.use(cors());
@@ -17,7 +17,10 @@ app.use(
   })
 );
 
-const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.iitamdp.mongodb.net/?retryWrites=true&w=majority`;
+// const uri =
+//   "mongodb+srv://B8A12:4TkAdq6KMuIVodeM@cluster0.iitamdp.mongodb.net/?retryWrites=true&w=majority";
+const uri =
+  "mongodb+srv://B8A12:4TkAdq6KMuIVodeM@cluster0.iitamdp.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
   serverApi: {
